@@ -1,0 +1,64 @@
+specVersion: 0.0.4
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: UserGateFactory
+    network: "{{network}}"
+    source:
+      address: "{{UserGateFactory}}"
+      startBlock: {{UserGateFactory_startBlock}}
+      abi: UserGateFactory
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - User
+      abis:
+        - name: UserGateFactory
+          file: ./abis/UserGateFactory.json
+      eventHandlers:
+        - event: CreateGate(address,string,address)
+          handler: handleCreateGate
+      file: ./src/mappings/UserGateFactory.ts
+  - kind: ethereum/contract
+    name: ProblemFactory
+    network: "{{network}}"
+    source:
+      address: "{{ProblemFactory}}"
+      startBlock: {{ProblemFactory_startBlock}}
+      abi: ProblemFactory
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Problem
+      abis:
+        - name: ProblemFactory
+          file: ./abis/ProblemFactory.json
+      eventHandlers:
+        - event: CreateProblem(address,uint256,address,address)
+          handler: handleCreateProblem
+      file: ./src/mappings/ProblemFactory.ts
+
+templates:
+  - kind: ethereum/contract
+    name: Problem
+    network: "{{network}}"
+    source:
+      abi: Problem
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Problem
+      abis:
+        - name: Problem
+          file: ./abis/Problem.json
+      eventHandlers:
+        - event: RunSolution(address,uint256,uint256,uint8[])
+          handler: handleRunSolution
+      file: ./src/mappings/Problem.ts

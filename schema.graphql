@@ -1,0 +1,45 @@
+type Bundle @entity {
+  id: ID!
+  syncingIndex: BigInt!
+}
+
+type Problem @entity {
+  id: ID!
+  author: String!
+  address: String!
+  checker: String!
+
+  # metadata
+  block: BigInt!
+  timestamp: BigInt!
+  txHash: String!
+  syncingIndex: BigInt!
+}
+
+type User @entity {
+  id: ID! # username
+  user: String!
+  gate: String!
+
+  # metadata
+  block: BigInt!
+  timestamp: BigInt!
+  txHash: String!
+  syncingIndex: BigInt!
+}
+
+type Submission @entity {
+  id: ID!
+  contestant: String!
+  solution: String!
+  problem: String!
+  version: BigInt!
+  point: BigInt!
+  verdicts: [Int!]!
+
+  # metadata
+  block: BigInt!
+  timestamp: BigInt!
+  txHash: String!
+  syncingIndex: BigInt!
+}

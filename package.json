@@ -1,0 +1,16 @@
+{
+  "name": "solidity-judge-subgraph",
+  "license": "UNLICENSED",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "prepare": "yarn mustache ./config/${NETWORK}.json subgraph.template.yaml subgraph.yaml && yarn mustache ./config/${NETWORK}.json ./src/constants.template.ts ./src/constants.ts && rm -rf generated && yarn codegen",
+    "prepare:fuji": "NETWORK=fuji yarn prepare",
+    "deploy:fuji": "yarn prepare:fuji && graph deploy --product hosted-service leduythuccs/solidity-judge"
+  },
+  "devDependencies": {
+    "@graphprotocol/graph-cli": "^0.33.0",
+    "@graphprotocol/graph-ts": "^0.27.0",
+    "mustache": "^3.1.0"
+  }
+}
