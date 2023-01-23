@@ -10,6 +10,7 @@ export function handleCreateProblem(event: CreateProblem): void {
   problem.checker = event.params.checker.toHexString();
   setMetaDataFields(problem, event);
   setSyncingIndex("problems", problem);
+  problem.save();
   // create template
   ProblemTemplate.create(event.params.problem);
 }
