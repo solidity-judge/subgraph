@@ -1,3 +1,4 @@
+import { log } from "@graphprotocol/graph-ts";
 import { Problem, Submission } from "../../generated/schema";
 import {
   RunSolution,
@@ -7,7 +8,10 @@ import { generateTransactionId, setMetaDataFields, setSyncingIndex } from "../he
 
 export function handleRunSolution(event: RunSolution): void {
   let problem = Problem.load(event.address.toHexString());
-  if (!problem) return;
+  if (!problem) {
+    log.error("Problem not found: {}", [event.address.toHexString()]);
+    return;
+  }
 
   let submission = new Submission(generateTransactionId(event));
   submission.problem = problem.id;
