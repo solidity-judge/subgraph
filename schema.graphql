@@ -43,3 +43,15 @@ type Submission @entity {
   txHash: String!
   syncingIndex: BigInt!
 }
+
+type TestVersion @entity {
+  id: ID!
+  problem: String!
+  version: BigInt!
+
+  # metadata
+  block: BigInt!
+  timestamp: BigInt!
+  txHash: String!
+  syncingIndex: BigInt!
+}

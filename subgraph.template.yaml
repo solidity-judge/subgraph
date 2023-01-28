@@ -61,4 +61,6 @@ templates:
       eventHandlers:
         - event: RunSolution(address,uint256,uint256,uint8[])
           handler: handleRunSolution
+        - event: NewTestVersion(uint256,(bytes,bytes32,uint224)[])
+          handler: handleNewTestVersion
       file: ./src/mappings/Problem.ts

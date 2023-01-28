@@ -1,6 +1,7 @@
 import { log } from "@graphprotocol/graph-ts";
-import { Problem, Submission } from "../../generated/schema";
+import { Problem, Submission, TestVersion } from "../../generated/schema";
 import {
+  NewTestVersion,
   RunSolution,
 } from "../../generated/templates/Problem/Problem";
 import { Problem as ProblemContract } from "../../generated/templates/Problem/Problem";
@@ -26,4 +27,13 @@ export function handleRunSolution(event: RunSolution): void {
   setMetaDataFields(submission, event);
   setSyncingIndex("submissions", submission);
   submission.save();
+}
+
+export function handleNewTestVersion(event: NewTestVersion): void {
+  let testVersion = new TestVersion(generateTransactionId(event));
+  testVersion.problem = event.address.toHexString();
+  testVersion.version = event.params.version;
+  setMetaDataFields(testVersion, event);
+  setSyncingIndex("testVersions", testVersion);
+  testVersion.save();
 }
