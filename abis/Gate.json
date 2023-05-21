@@ -37,25 +37,6 @@
                 "internalType": "bytes",
                 "name": "bytecode",
                 "type": "bytes"
-            }
-        ],
-        "name": "deploy",
-        "outputs": [
-            {
-                "internalType": "address",
-                "name": "solution",
-                "type": "address"
-            }
-        ],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "bytes",
-                "name": "bytecode",
-                "type": "bytes"
             },
             {
                 "internalType": "bytes",
@@ -69,6 +50,11 @@
                 "internalType": "bytes",
                 "name": "output",
                 "type": "bytes"
+            },
+            {
+                "internalType": "uint256",
+                "name": "gasUsed",
+                "type": "uint256"
             }
         ],
         "stateMutability": "nonpayable",

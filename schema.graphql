@@ -33,7 +33,7 @@ type Submission @entity {
   contestant: String!
   solution: String!
   problem: String!
-  version: BigInt!
+  isPreDeadlineSolution: Boolean!
   point: BigInt!
   verdicts: [Int!]!
 
@@ -48,6 +48,7 @@ type TestVersion @entity {
   id: ID!
   problem: String!
   version: BigInt!
+  gasLimit: BigInt!
 
   # metadata
   block: BigInt!

@@ -247,6 +247,19 @@
                 "type": "address"
             }
         ],
+        "name": "upgradeBeacon",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "newImplementation",
+                "type": "address"
+            }
+        ],
         "name": "upgradeTo",
         "outputs": [],
         "stateMutability": "nonpayable",
@@ -268,30 +281,6 @@
         "name": "upgradeToAndCall",
         "outputs": [],
         "stateMutability": "payable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "user",
-                "type": "address"
-            },
-            {
-                "internalType": "address",
-                "name": "solution",
-                "type": "address"
-            }
-        ],
-        "name": "verifySolution",
-        "outputs": [
-            {
-                "internalType": "bool",
-                "name": "",
-                "type": "bool"
-            }
-        ],
-        "stateMutability": "view",
         "type": "function"
     }
 ]

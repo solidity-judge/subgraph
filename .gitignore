@@ -12,3 +12,4 @@ subgraph.yaml
 src/constants.ts
 
 *.old
+.yarn

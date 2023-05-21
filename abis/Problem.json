@@ -4,6 +4,25 @@
         "inputs": [
             {
                 "indexed": false,
+                "internalType": "address",
+                "name": "contestant",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "bytes32",
+                "name": "solutionHash",
+                "type": "bytes32"
+            }
+        ],
+        "name": "DeclareSolutionHash",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": false,
                 "internalType": "uint8",
                 "name": "version",
                 "type": "uint8"
@@ -60,14 +79,14 @@
             {
                 "indexed": false,
                 "internalType": "uint256",
-                "name": "version",
+                "name": "point",
                 "type": "uint256"
             },
             {
                 "indexed": false,
-                "internalType": "uint256",
-                "name": "point",
-                "type": "uint256"
+                "internalType": "bool",
+                "name": "isPreDeadlineSolution",
+                "type": "bool"
             },
             {
                 "indexed": false,
@@ -87,6 +106,12 @@
                 "internalType": "address",
                 "name": "contestant",
                 "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "bool",
+                "name": "isPreDeadlineSolution",
+                "type": "bool"
             },
             {
                 "indexed": false,
@@ -178,22 +203,58 @@
         "name": "contestants",
         "outputs": [
             {
+                "internalType": "bytes32",
+                "name": "solutionHash",
+                "type": "bytes32"
+            },
+            {
                 "internalType": "address",
-                "name": "solution",
+                "name": "solutionPreDeadline",
                 "type": "address"
             },
             {
-                "internalType": "uint32",
-                "name": "point",
-                "type": "uint32"
+                "internalType": "address",
+                "name": "solutionPosDeadline",
+                "type": "address"
             },
             {
-                "internalType": "uint32",
-                "name": "version",
-                "type": "uint32"
+                "internalType": "uint24",
+                "name": "pointPreDeadline",
+                "type": "uint24"
+            },
+            {
+                "internalType": "uint24",
+                "name": "pointPosDeadline",
+                "type": "uint24"
             }
         ],
         "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "deadline",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bytes32",
+                "name": "solutionHash",
+                "type": "bytes32"
+            }
+        ],
+        "name": "declareSolutionHash",
+        "outputs": [],
+        "stateMutability": "nonpayable",
         "type": "function"
     },
     {
@@ -220,19 +281,29 @@
         "name": "getContestantInfo",
         "outputs": [
             {
+                "internalType": "bytes32",
+                "name": "solutionHash",
+                "type": "bytes32"
+            },
+            {
                 "internalType": "address",
-                "name": "solution",
+                "name": "solutionPreDeadline",
                 "type": "address"
             },
             {
-                "internalType": "uint32",
-                "name": "point",
-                "type": "uint32"
+                "internalType": "address",
+                "name": "solutionPosDeadline",
+                "type": "address"
             },
             {
-                "internalType": "bool",
-                "name": "isPointUpToDate",
-                "type": "bool"
+                "internalType": "uint24",
+                "name": "pointPreDeadline",
+                "type": "uint24"
+            },
+            {
+                "internalType": "uint24",
+                "name": "pointPosDeadline",
+                "type": "uint24"
             }
         ],
         "stateMutability": "view",
@@ -315,9 +386,37 @@
                 "internalType": "address",
                 "name": "contestant",
                 "type": "address"
+            },
+            {
+                "internalType": "bool",
+                "name": "isBeforeDeadline",
+                "type": "bool"
             }
         ],
-        "name": "runSolution",
+        "name": "runPreDeadlineSolution",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "user",
+                "type": "address"
+            },
+            {
+                "internalType": "bool",
+                "name": "isPreDeadlineSolution",
+                "type": "bool"
+            },
+            {
+                "internalType": "bytes",
+                "name": "solutionBytecode",
+                "type": "bytes"
+            }
+        ],
+        "name": "submit",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -375,32 +474,6 @@
             }
         ],
         "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "solution",
-                "type": "address"
-            }
-        ],
-        "name": "updateAndRunSolution",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "solution",
-                "type": "address"
-            }
-        ],
-        "name": "updateSolution",
-        "outputs": [],
-        "stateMutability": "nonpayable",
         "type": "function"
     }
 ]
