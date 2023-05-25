@@ -16,6 +16,18 @@ type Problem @entity {
   syncingIndex: BigInt!
 }
 
+type ProblemDeadline @entity {
+  id: ID!
+  problem: String!
+  deadline: BigInt!
+
+  # metadata
+  block: BigInt!
+  timestamp: BigInt!
+  txHash: String!
+  syncingIndex: BigInt!
+}
+
 type User @entity {
   id: ID! # username
   user: String!

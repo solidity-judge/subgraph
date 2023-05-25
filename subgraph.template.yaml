@@ -63,4 +63,6 @@ templates:
           handler: handleRunSolution
         - event: NewTestVersion(uint256,(bytes,bytes32,uint224)[])
           handler: handleNewTestVersion
+        - event: DeadlineUpdated(uint256)
+          handler: handlerDeadlineUpdated
       file: ./src/mappings/Problem.ts
